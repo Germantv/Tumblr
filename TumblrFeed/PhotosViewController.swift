@@ -2,8 +2,8 @@
 //  PhotosViewController.swift
 //  TumblrFeed
 //
-//  Created by Haimei Yang on 1/31/18.
-//  Copyright © 2018 Haimei Yang. All rights reserved.
+//  Created by German Flores on 1/31/18.
+//  Copyright © 2018 German Flores. All rights reserved.
 //
 
 import UIKit
@@ -39,7 +39,7 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
                 self.posts = responseDictionary["posts"] as! [[String: Any]]
                 
                 
-                // TODO: Reload the table view
+                //Reload the table view
                 self.tableView.reloadData()
             }
         }
@@ -48,6 +48,13 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         task.resume()
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! PhotoDetailsViewController
+        let cell = sender as! PhotoCell
+        
+        vc.image = cell.cellImageView.image
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
